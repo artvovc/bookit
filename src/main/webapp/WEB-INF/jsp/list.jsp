@@ -11,25 +11,10 @@
 <body>
 <p>hi!</p>
 <body>
-<form:form method="POST" commandName="book" action="/">
-<table>
-    <tr>
-        <td><form:label path="title">title:</form:label></td>
-        <td><form:input path="title" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="author">author:</form:label></td>
-        <td><form:input path="author" /></td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Submit"/>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>  
-</form:form>
+<c:forEach var="item" items="${content}">
+        <div><b>${item.title}</b></div>
+        <div><b>${item.author}</b></div>
+</c:forEach>
 </body>
 </body>
 </html>
