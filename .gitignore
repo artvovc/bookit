@@ -1,18 +1,15 @@
 
-# Eclipse
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.metadata
+#Eclipse files
+**/.project
+**/.classpath
+**/.settings/
+blog/bin/
+**/.tern-project
 
-# Locally stored "Eclipse launch configurations"
-*.launch
+# Package Files #
+*.jar
+*.war
+*.ear
 
 # Maven
 log/
