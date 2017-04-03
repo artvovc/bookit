@@ -1,0 +1,26 @@
+
+# Eclipse
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.metadata
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# Maven
+log/
+target/
+
+## File-based project format
+*.ipr
+*.iws
+*.iml
+
+
