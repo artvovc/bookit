@@ -32,7 +32,7 @@ public class IndexController {
     public ModelAndView index(Model model) {
     	Book bok = new Book();
     	bok.setTitle("not use this");
-    	bok.setAuthor("not use this");
+    	bok.setAuthorFirstName("not use this");
     	bRepository.insert(bok);
         return new ModelAndView("index","book", new Book());
     }

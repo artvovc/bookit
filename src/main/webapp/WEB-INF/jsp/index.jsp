@@ -18,8 +18,8 @@
         <td><form:input path="title" /></td>
     </tr>
     <tr>
-        <td><form:label path="author">author:</form:label></td>
-        <td><form:input path="author" /></td>
+        <td><form:label path="authorFirstName">author:</form:label></td>
+        <td><form:input path="authorFirstName" /></td>
     </tr>
     <tr>
         <td colspan="2">

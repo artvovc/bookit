@@ -12,8 +12,8 @@
 <p>hi!</p>
 <body>
 <c:forEach var="item" items="${content}">
-        <div><b>${item.title}</b></div>
-        <div><b>${item.author}</b></div>
+        <div><b>${item.getTitle()}</b></div>
+        <div><b>${item.getAuthorFirstName()}</b></div>
 </c:forEach>
 </body>
 </body>
