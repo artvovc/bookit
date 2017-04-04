@@ -25,3 +25,5 @@ target/
 /mvn.cmd
 /mvnw
 /.mvn/
+
+*.cmd
