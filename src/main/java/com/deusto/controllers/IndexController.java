@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.deusto.model.Book;
-import com.deusto.repository.BookRepository;
+import com.deusto.models.Book;
+import com.deusto.repositories.BookRepository;
+import com.deusto.services.EmailTemplate;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	BookRepository bRepository;
+	
+	@Autowired
+	EmailTemplate emailTemplate;
 	
 	@PostMapping(path = "/")
 	public ModelAndView post(@ModelAttribute Book book, Model model){
@@ -40,5 +44,13 @@ public class IndexController {
     @GetMapping(path = "/json", produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> json(){
     	return new ResponseEntity(bRepository.findByTitle("not use this"),HttpStatus.OK);
+    }
+    
+    @GetMapping(path = "/sendEmailExample")
+    public HttpEntity<?> send() throws Exception{
+    	//https://github.com/ozimov/spring-boot-email-tools
+    	// access link and teach... 
+    	emailTemplate.sendMail();
+    	return new ResponseEntity("email was send",HttpStatus.OK);
     }
 }

@@ -1,7 +1,8 @@
-package com.deusto.repository;
+package com.deusto.repositories;
 
-import com.deusto.model.Book;
 import org.springframework.stereotype.Repository;
+
+import com.deusto.models.Book;
 
 import java.util.List;
 

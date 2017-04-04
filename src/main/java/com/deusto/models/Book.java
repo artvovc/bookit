@@ -1,4 +1,4 @@
-package com.deusto.model;
+package com.deusto.models;
 
 import java.util.List;
 
