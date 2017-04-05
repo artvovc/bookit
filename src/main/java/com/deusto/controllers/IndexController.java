@@ -29,15 +29,7 @@ public class IndexController {
 	EmailTemplate emailTemplate;
 	
 	@PostMapping(path = "/")
-	public ModelAndView post(@ModelAttribute Book book, Model model){
-		
-		/* The below code should not be present. To erase. */
-//		Mongeez mongeez = new Mongeez();
-//    	mongeez.setFile(new ClassPathResource("/db/mongeez.xml"));
-//    	mongeez.setMongo(new Mongo("localhost", 27017));
-//    	mongeez.setDbName("bookit_db");
-//    	mongeez.process();
-    	
+	public ModelAndView post(@ModelAttribute Book book, Model model){    	
     	bRepository.insert(book);
 		model.addAttribute("content", bRepository.findAll());
 		return new ModelAndView("list");
