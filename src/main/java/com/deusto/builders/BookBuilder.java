@@ -6,12 +6,7 @@ import com.deusto.models.Book;
 
 public class BookBuilder {
 	
-	Book book;
-	
-	public BookBuilder id(String id) {
-		this.book.setId(id); 
-		return this;
-	}
+	private Book book;
 	
 	public BookBuilder title(String title) {
 		this.book.setTitle(title);
@@ -64,8 +59,8 @@ public class BookBuilder {
 	}
 	
 	/* poti si sa faci constructor in builder care va primi toti parametri ... Da, pot */
-	
-	public Book Book(String id, String title, String authorFirstName, String authorLastName, String genre,
+	// CONSTRUCTOR a lui Builderrrrrrrrrrrrrrrrrrrrrrrrrrrrrr da nu metoda Book(...) care intoarce Book
+	public BookBuilder(String id, String title, String authorFirstName, String authorLastName, String genre,
 			String description, Long publishDate, int pages, int ageLimit, int count, List<String> tags) {
 		this.book.setId(id);
 		this.book.setAgeLimit(ageLimit);
@@ -78,11 +73,8 @@ public class BookBuilder {
 		this.book.setPages(pages);
 		this.book.setCount(count);
 		this.book.setTags(tags);
-		return this.book;
 	}	
-	
-	/* Return finally constructed object */
-	
+
 	public Book build() {
 		return this.book;
 	}

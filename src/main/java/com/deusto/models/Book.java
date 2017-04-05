@@ -40,10 +40,6 @@ public class Book {
 	public void setAuthorFirstName(String authorFirstName) {
 		this.authorFirstName = authorFirstName;
 	}
-	public Book() {
-		super();
-	}
-
 
 	public String getAuthorLastName() {
 		return authorLastName;
