@@ -2,11 +2,10 @@ package com.deusto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 
 import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
-@SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
+@SpringBootApplication
 @EnableEmailTools
 public class BookitApplication {
 
