@@ -1,6 +1,8 @@
 package com.deusto.controllers;
 
+import org.mongeez.Mongeez;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.deusto.model.Book;
 import com.deusto.repository.BookRepository;
+import com.mongodb.Mongo;
 
 @Controller
 public class IndexController {
@@ -23,13 +26,23 @@ public class IndexController {
 	
 	@PostMapping(path = "/")
 	public ModelAndView post(@ModelAttribute Book book, Model model){
-		bRepository.insert(book);
+		
+		/* The below code should not be present. To erase. */
+//		Mongeez mongeez = new Mongeez();
+//    	mongeez.setFile(new ClassPathResource("/db/mongeez.xml"));
+//    	mongeez.setMongo(new Mongo("localhost", 27017));
+//    	mongeez.setDbName("bookit_db");
+//    	mongeez.process();
+    	
+    	bRepository.insert(book);
 		model.addAttribute("content", bRepository.findAll());
 		return new ModelAndView("list");
 	}
 	
     @GetMapping(path = "/")
     public ModelAndView index(Model model) {
+    	
+    	
     	Book bok = new Book();
     	bok.setTitle("not use this");
     	bok.setAuthorFirstName("not use this");

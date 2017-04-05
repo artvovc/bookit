@@ -1,0 +1,14 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-2">
+        <script>
+			db.books.insert({
+			    "title" : "Titulescu2"
+			});
+		</script>
+		<script>
+			db.books.insert({
+			    "authorFirstName" : "Titulescu1"
+			});
+		</script>
+    </changeSet>
+</mongoChangeLog>
