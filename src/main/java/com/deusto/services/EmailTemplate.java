@@ -26,5 +26,4 @@ public class EmailTemplate {
 		        .encoding("UTF-8").build();
 		emailService.send(email);
 	}
-
 }
