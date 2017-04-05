@@ -1,4 +1,4 @@
-package com.deusto.model;
+package com.deusto.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
