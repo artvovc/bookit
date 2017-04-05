@@ -37,8 +37,6 @@ public class IndexController {
 	
     @GetMapping(path = "/")
     public ModelAndView index(Model model) {
-    	
-    	
     	Book bok = new Book();
     	bok.setTitle("not use this");
     	bok.setAuthorFirstName("not use this");
