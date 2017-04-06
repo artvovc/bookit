@@ -4,12 +4,10 @@ import com.deusto.models.Book;
 import com.deusto.models.Registr;
 import com.deusto.repositories.BookRepository;
 import com.deusto.services.EmailTemplate;
-import com.google.common.collect.ImmutableMap;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.apache.commons.beanutils.BeanMap;
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -47,8 +45,10 @@ public class IndexController {
         return new ResponseEntity<>(bRepository.insert(bok), HttpStatus.OK);
     }
 
+
     @Autowired
-    Configuration freemarkerConfiguration;
+    @Qualifier("freeMarkerConfiguration")
+    Configuration freeMarkerConfiguration;
 
 
     @GetMapping(path = "/sendEmailExample")
@@ -58,7 +58,7 @@ public class IndexController {
         reg.setFirstname("iobana");
 
         String form = FreeMarkerTemplateUtils.processTemplateIntoString(
-                freemarkerConfiguration.getTemplate("template.ftl"),
+                freeMarkerConfiguration.getTemplate("template.ftl"),
                 new BeanMap(reg));
 
         return new ResponseEntity<>(form, HttpStatus.OK);
