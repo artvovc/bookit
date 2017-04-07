@@ -26,5 +26,6 @@ target/
 /mvnw
 /.mvn/
 
+.idea/
 *.cmd
 .idea/
