@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -126,6 +127,13 @@ public class TokenUtils {
 //    claims.put("created", this.generateCurrentDate());
 //    return this.generateToken(claims);
 //  }
+
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<String, Object>();
+        claims.put("sub", userDetails.getUsername());
+        claims.put("created", this.generateCurrentDate());
+        return this.generateToken(claims);
+    }
 
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
