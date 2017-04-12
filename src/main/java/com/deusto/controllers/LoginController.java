@@ -1,7 +1,8 @@
 package com.deusto.controllers;
 
-/**
- * Created by diana on 4/12/17.
- */
+import org.springframework.stereotype.Controller;
+
+
+@Controller
 public class LoginController {
 }

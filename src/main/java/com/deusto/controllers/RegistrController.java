@@ -1,10 +1,8 @@
 package com.deusto.controllers;
 
 import com.deusto.builders.RegistrBuilder;
-import com.deusto.builders.UserBuilder;
 import com.deusto.dtos.RegistrDTO;
 import com.deusto.forms.email.RegistrForm;
-import com.deusto.models.User;
 import com.deusto.repositories.RegistrRepository;
 import com.deusto.repositories.UserRepository;
 import com.deusto.services.RegistrService;
@@ -13,10 +11,8 @@ import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,9 +41,6 @@ public class RegistrController {
 
     @Autowired
     private UserRepository userRepository;
-
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> registr(@RequestBody RegistrDTO registrDTO) {
