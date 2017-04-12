@@ -14,6 +14,8 @@ public class User {
 	private long birthDate;
 	private String countryCode;
 	private int phone;
+	private String password;
+
 	@DBRef
 	private Address address;
 	public String getId() {
@@ -63,6 +65,9 @@ public class User {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
