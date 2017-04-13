@@ -5,9 +5,6 @@ import com.deusto.dtos.PersonDTO;
 import com.deusto.models.Registr;
 import com.deusto.models.User;
 
-/**
- * Created by diana on 4/12/17.
- */
 public class UserBuilder {
 
     private User user;
@@ -69,9 +66,7 @@ public class UserBuilder {
         user.setPhone(person.getPhone());
         user.setCountryCode(person.getCountryCode());
         user.setBirthDate(person.getBirthDate());
-
-
-        //user.setAddress(AddressBuilder.get(person.getAdress()));  TODO implement
+        user.setAddress(AddressBuilder.get(person.getAdress()));
         return user;
     }
 

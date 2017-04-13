@@ -1,23 +1,20 @@
 package com.deusto.dtos;
 
-/**
- * Created by diana on 4/13/17.
- */
-public class PersonDTO {
-    // uite in altele DTO-uri cum se valideaza
-    //TODO trebuie sa fie not empty si validata ca email
-    private String email;
-    //TODO trebuie sa fie not empty
-    private long birthDate;
-    //TODO trebuie sa fie not empty
-    private String countryCode;
-    //TODO trebuie sa fie not empty
-    private int phone;
-    //TODO trebuie sa fie not empty
-    private String password;
-    //TODO defineste classa ...
-    //TODO adauga builder din DTO -> Entity
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
+public class PersonDTO {
+    @Email
+    @NotEmpty
+    private String email;
+    @NotEmpty
+    private long birthDate;
+    @NotEmpty
+    private String countryCode;
+    @NotEmpty
+    private int phone;
+    @NotEmpty
+    private String password;
     private AddressDTO adress;
 
     public String getEmail() {
@@ -69,6 +66,3 @@ public class PersonDTO {
     }
 }
 
-class AddressDTO {
-
-}
