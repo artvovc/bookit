@@ -1,9 +1,14 @@
 package com.deusto.dtos;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class LoginDTO {
+    @NotEmpty
+    @Email
     private String email;
+    @NotEmpty
     private String encryptedPassword;
 
     public String getEmail() {

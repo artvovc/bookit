@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
@@ -43,7 +45,7 @@ public class RegistrController {
     private UserRepository userRepository;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> registr(@RequestBody RegistrDTO registrDTO) {
+    public HttpEntity<?> registr(@RequestBody @Valid RegistrDTO registrDTO) {
         //TODO avoid try catch block in controllers
         try {
             emailService.send(

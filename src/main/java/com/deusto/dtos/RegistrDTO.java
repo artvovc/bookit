@@ -1,8 +1,15 @@
 package com.deusto.dtos;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class RegistrDTO {
+    @NotEmpty
     private String firstname;
+    @NotEmpty
     private String lastname;
+    @NotEmpty
+    @Email
     private String email;
 
     public String getFirstname() {

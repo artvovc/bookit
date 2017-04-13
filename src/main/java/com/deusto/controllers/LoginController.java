@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 
 
 @Controller
@@ -20,7 +21,7 @@ public class LoginController {
     private AuthenticationService authenticationService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> login(@RequestBody LoginDTO loginDTO) {
+    public HttpEntity<?> login(@RequestBody @Valid LoginDTO loginDTO) {
         return authenticationService.authentication(loginDTO);
     }
 }

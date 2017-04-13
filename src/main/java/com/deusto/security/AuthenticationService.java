@@ -23,7 +23,6 @@ public class AuthenticationService {
     private TokenUtils tokenUtils;
 
     public ResponseEntity authentication(LoginDTO loginDTO) {
-        if (loginDTO.getEmail().isEmpty() || loginDTO.getEncryptedPassword().isEmpty()) return
                 new ResponseEntity("{\"error\":\"login is incorrect or password is empty\"}", BAD_REQUEST);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
