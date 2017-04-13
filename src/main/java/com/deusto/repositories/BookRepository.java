@@ -10,6 +10,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Repository
 public interface BookRepository extends MongoRepository<Book,String>{
+	Book findById(String id);
 	List<Book> findByTitle(String title);
-//	List<Book> findByAuthor(String authorFirstName);
+	List<Book> findByAuthorFirstName(String authorFirstName);
+	List<Book> findAllByAuthorLastName(String authorLastName);
+	List<Book> findAllByGenre(String genre);
 }
