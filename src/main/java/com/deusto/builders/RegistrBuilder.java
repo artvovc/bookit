@@ -9,6 +9,7 @@ public class RegistrBuilder {
         registr.setEmail(registrDTO.getEmail());
         registr.setFirstname(registrDTO.getFirstname());
         registr.setLastname(registrDTO.getLastname());
+        registr.setActiv(false);
         return registr;
     }
 }

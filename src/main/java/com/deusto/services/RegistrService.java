@@ -18,4 +18,16 @@ public class RegistrService {
     public Registr findById(String id) {
         return registrRepository.findById(id);
     }
+
+    public void update(Registr registr) {
+        registrRepository.save(registr);
+    }
+
+    public Registr findByEmail(String email) {
+        return registrRepository.findByEmail(email);
+    }
+
+    public void delete(Registr registr) {
+        registrRepository.delete(registr);
+    }
 }

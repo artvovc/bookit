@@ -10,6 +10,7 @@ public class Registr {
     private String firstname;
     private String lastname;
     private String email;
+    private boolean isActiv;
 
     public String getId() {
         return id;
@@ -43,5 +44,11 @@ public class Registr {
         this.email = email;
     }
 
+    public boolean isActiv() {
+        return isActiv;
+    }
 
+    public void setActiv(boolean activ) {
+        isActiv = activ;
+    }
 }

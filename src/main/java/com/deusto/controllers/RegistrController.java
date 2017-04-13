@@ -2,13 +2,14 @@ package com.deusto.controllers;
 
 import com.deusto.builders.RegistrBuilder;
 import com.deusto.builders.UserBuilder;
+import com.deusto.dtos.LoginDTO;
+import com.deusto.dtos.PersonDTO;
 import com.deusto.dtos.RegistrDTO;
 import com.deusto.forms.email.RegistrForm;
 import com.deusto.models.Registr;
-import com.deusto.models.User;
-import com.deusto.repositories.RegistrRepository;
-import com.deusto.repositories.UserRepository;
+import com.deusto.security.AuthenticationService;
 import com.deusto.services.RegistrService;
+import com.deusto.services.UserService;
 import com.deusto.services.mail.EmailService;
 import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,7 +27,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
-
 @RequestMapping("/registration")
 public class RegistrController {
 
@@ -42,13 +40,13 @@ public class RegistrController {
     private RegistrService registrService;
 
     @Autowired
-    private RegistrRepository registrRepository;
+    private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
+    private AuthenticationService authenticationService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> registr(@RequestBody @Valid RegistrDTO registrDTO) {
+    public HttpEntity<?> firstStep(@RequestBody @Valid RegistrDTO registrDTO) {
         //TODO avoid try catch block in controllers
         try {
             emailService.send(
@@ -57,15 +55,26 @@ public class RegistrController {
         } catch (Exception e) {
             return new ResponseEntity<>(ImmutableMap.of("error", e.getMessage()), BAD_REQUEST);
         }
-        return new ResponseEntity<>(ImmutableMap.of("email", env.getProperty("mail.message")), OK);
+        return new ResponseEntity<>(ImmutableMap.of("message", env.getProperty("mail.message")), OK);
     }
 
-//    fignea nea
-@PostMapping(path = "/path", consumes = MediaType.APPLICATION_JSON_VALUE)
-public HttpEntity<?> post(@RequestBody Registr registr) {
-    User user = UserBuilder.get(registrRepository.findById(registr.getId()));
-    return new ResponseEntity<>(userRepository.insert(user), OK);
-}
+    @GetMapping(path = "/activate/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> secondStep(@PathVariable String id) {
+        Registr registr = registrService.findById(id);
+        registr.setActiv(true);
+        registrService.update(registr);
+        return new ResponseEntity<>(ImmutableMap.of("message", "successfull activated"), OK);
+    }
+
+    @PostMapping(path = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> lastStep(@RequestBody @Valid PersonDTO person) {
+        //TODO ADD CONTROLLERADVICE
+        Registr registr = registrService.findByEmail(person.getEmail());
+        if (!registr.isActiv()) return new ResponseEntity<>(ImmutableMap.of("message", "activate email"), BAD_REQUEST);
+        LoginDTO loginDTO = UserBuilder.get(userService.insert(UserBuilder.get(registr, person)));
+        registrService.delete(registr);
+        return authenticationService.authentication(loginDTO);
+    }
 
 }
 
