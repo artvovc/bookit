@@ -1,8 +1,11 @@
 package com.deusto.controllers;
 
 import com.deusto.builders.RegistrBuilder;
+import com.deusto.builders.UserBuilder;
 import com.deusto.dtos.RegistrDTO;
 import com.deusto.forms.email.RegistrForm;
+import com.deusto.models.Registr;
+import com.deusto.models.User;
 import com.deusto.repositories.RegistrRepository;
 import com.deusto.repositories.UserRepository;
 import com.deusto.services.RegistrService;
@@ -58,12 +61,11 @@ public class RegistrController {
     }
 
 //    fignea nea
-//    @PostMapping(path = "/path/to/be/specified", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public HttpEntity<?> post(@RequestBody User user) {
-//        // de sters
-//        user = UserBuilder.get(registrRepository.findById("58ee15fb5304b81078dee964"));
-//        return new ResponseEntity<>(userRepository.insert(user), HttpStatus.OK);
-//    }
+@PostMapping(path = "/path", consumes = MediaType.APPLICATION_JSON_VALUE)
+public HttpEntity<?> post(@RequestBody Registr registr) {
+    User user = UserBuilder.get(registrRepository.findById(registr.getId()));
+    return new ResponseEntity<>(userRepository.insert(user), OK);
+}
 
 }
 
