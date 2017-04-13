@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -24,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with email '%s'.", email));
         } else {
-            return new SecurityUser(user.getId(), user.getPassword(), user.getEmail(), new Date(), Collections.singletonList(
+            return new SecurityUser(user.getId(), user.getPassword(), user.getEmail(), null, Collections.singletonList(
                     new SimpleGrantedAuthority("USER")
             ));
         }

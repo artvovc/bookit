@@ -1,0 +1,25 @@
+package com.deusto.dtos;
+
+import org.apache.commons.validator.routines.EmailValidator;
+
+public class LoginDTO {
+    private String email;
+    private String encryptedPassword;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = EmailValidator.getInstance().isValid(email) ? email : "";
+    }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
+}
