@@ -13,6 +13,11 @@ public class BookService {
     @Autowired
     BookRepository bRepository;
 
+    public Book insert(Book book) {
+        bRepository.insert(book);
+        return book;
+    }
+
     public List<Book> findAll() {
         return bRepository.findAll();
     }

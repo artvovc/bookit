@@ -2,6 +2,7 @@ package com.deusto.builders;
 
 import java.util.List;
 
+import com.deusto.dtos.BookDTO;
 import com.deusto.models.Book;
 
 public class BookBuilder {
@@ -77,5 +78,18 @@ public class BookBuilder {
 
 	public Book build() {
 		return this.book;
+	}
+
+	public static Book get(BookDTO bookDTO) {
+		Book book = new Book();
+		book.setAgeLimit(bookDTO.getAgeLimit());
+		book.setAuthorFirstName(bookDTO.getAuthorFirstName());
+		book.setAuthorLastName(bookDTO.getAuthorLastName());
+		book.setCount(bookDTO.getCount());
+		book.setDescription(bookDTO.getDescription());
+		book.setPages(bookDTO.getPages());
+		book.setPublishDate(bookDTO.getPublishDate());
+		book.setTitle(bookDTO.getTitle());
+		return book;
 	}
 }
