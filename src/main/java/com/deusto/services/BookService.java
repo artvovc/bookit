@@ -14,8 +14,7 @@ public class BookService {
     BookRepository bRepository;
 
     public Book insert(Book book) {
-        bRepository.insert(book);
-        return book;
+        return bRepository.insert(book); //operatia de insert intoarce obiectul inserat
     }
 
     public List<Book> findAll() {
