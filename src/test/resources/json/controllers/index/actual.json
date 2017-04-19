@@ -1,0 +1,22 @@
+{
+  "books": [
+    {
+      "_id": {
+        "$oid": "51b6eab8cd794eb62bb3e131"
+      },
+      "title": "Test book 1",
+      "authorFirstName": "authorFirstName1",
+      "authorLastName": "authorLastName1",
+      "genre": "genre1",
+      "description": "description description description description description description description description description description description description description description description description description description description ",
+      "publishDate": 1492609908240,
+      "pages": 401,
+      "ageLimit": 18,
+      "count": 5,
+      "tags": [
+        "tag1",
+        "tag2"
+      ]
+    }
+  ]
+}

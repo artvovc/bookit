@@ -11,10 +11,10 @@ import java.util.List;
 public class BookService {
 
     @Autowired
-    BookRepository bRepository;
+    private BookRepository bRepository;
 
     public Book insert(Book book) {
-        return bRepository.insert(book); //operatia de insert intoarce obiectul inserat
+        return bRepository.insert(book);
     }
 
     public List<Book> findAll() {

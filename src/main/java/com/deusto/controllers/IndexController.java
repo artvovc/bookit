@@ -1,7 +1,7 @@
 package com.deusto.controllers;
 
 import com.deusto.models.Book;
-import com.deusto.repositories.BookRepository;
+import com.deusto.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -13,22 +13,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path = "/index")
 public class IndexController {
 
     @Autowired
-    BookRepository bRepository;
+    private BookService bookService;
 
-    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> post(@RequestBody Book book) {
-        return new ResponseEntity<>(bRepository.insert(book), HttpStatus.OK);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> post(@RequestBody @Valid Book book) {
+        return new ResponseEntity<>(bookService.insert(book), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> json() {
-        return new ResponseEntity(bRepository.findByTitle("not use this"), HttpStatus.OK);
+    @GetMapping(path = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> auth() {
+        Book book = new Book();
+        book.setAuthorFirstName("test");
+        book.setAuthorLastName("test");
+        book.setAgeLimit(18);
+        book.setCount(3);
+        return new ResponseEntity(bookService.insert(book), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/unauth", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> unAuth() {
+        Book book = new Book();
+        book.setAuthorFirstName("test");
+        book.setAuthorLastName("test");
+        book.setAgeLimit(18);
+        book.setCount(3);
+        return new ResponseEntity(bookService.insert(book), HttpStatus.OK);
     }
 
     @GetMapping(path = "/insertFake")
@@ -36,7 +52,7 @@ public class IndexController {
         Book bok = new Book();
         bok.setTitle("not use this");
         bok.setAuthorFirstName("not use this");
-        return new ResponseEntity(bRepository.insert(bok), HttpStatus.OK);
+        return new ResponseEntity(bookService.insert(bok), HttpStatus.OK);
     }
 
 }

@@ -63,7 +63,7 @@ public class RegistrController {
         Registr registr = registrService.findById(id);
         registr.setActiv(true);
         registrService.update(registr);
-        return new ResponseEntity<>(ImmutableMap.of("message", "successfull activated"), OK);
+        return new ResponseEntity<>(ImmutableMap.of("message", "successful activated"), OK);
     }
 
     @PostMapping(path = "/person", produces = MediaType.APPLICATION_JSON_VALUE)

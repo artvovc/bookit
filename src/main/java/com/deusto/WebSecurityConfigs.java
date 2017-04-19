@@ -16,6 +16,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.GET;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -59,9 +61,9 @@ public class WebSecurityConfigs extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/registration/**", "/login/**", "/book/**").permitAll()
+                .antMatchers(GET, "/index/unauth").permitAll()
                 .anyRequest().authenticated();
 
-        // Custom JWT based authentication
         httpSecurity
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
@@ -80,8 +82,7 @@ public class WebSecurityConfigs extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**",
                         "/swagger-resources/configuration/ui",
-                        "/swagger-resources/configuration/security",
-                        "/book**"
+                        "/swagger-resources/configuration/security"
                 );
     }
 }
