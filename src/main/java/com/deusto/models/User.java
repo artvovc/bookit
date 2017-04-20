@@ -16,9 +16,10 @@ public class User {
 	private int phone;
 	private String password;
 
-	@DBRef
-	private Address address;
-	public String getId() {
+    @DBRef(lazy = true)
+    private Address address;
+
+    public String getId() {
 		return id;
 	}
 	public void setId(String id) {

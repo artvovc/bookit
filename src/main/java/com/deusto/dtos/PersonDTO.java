@@ -7,15 +7,13 @@ public class PersonDTO {
     @Email
     @NotEmpty
     private String email;
-    @NotEmpty
     private long birthDate;
     @NotEmpty
     private String countryCode;
-    @NotEmpty
     private int phone;
     @NotEmpty
     private String password;
-    private AddressDTO adress;
+    private AddressDTO address;
 
     public String getEmail() {
         return email;
@@ -57,12 +55,12 @@ public class PersonDTO {
         this.password = password;
     }
 
-    public AddressDTO getAdress() {
-        return adress;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setAdress(AddressDTO adress) {
-        this.adress = adress;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 }
 

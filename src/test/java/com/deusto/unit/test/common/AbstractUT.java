@@ -7,7 +7,9 @@ import com.deusto.security.AuthenticationService;
 import com.deusto.services.BookService;
 import com.deusto.services.RegistrService;
 import com.deusto.services.UserService;
+import com.lordofthejars.nosqlunit.mongodb.MongoDbRule;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,11 +22,18 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import static com.lordofthejars.nosqlunit.mongodb.MongoDbConfigurationBuilder.mongoDb;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public abstract class AbstractUT {
     @Autowired
     protected Environment env;
+
+    @Rule
+    public MongoDbRule remoteMongoDbRule = new MongoDbRule(
+            mongoDb().databaseName("bookit_testdb").build()
+    );
 
     /***
      * =================================================

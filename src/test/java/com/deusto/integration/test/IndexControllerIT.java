@@ -38,6 +38,8 @@ public class IndexControllerIT extends AbstractIT {
     }
 
     @Test
+    @UsingDataSet(locations = "/json/controllers/index/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
+    @ShouldMatchDataSet(location = "/json/controllers/index/expect.json")
     @WithMockUser
     public void auth() throws Exception {
         MvcResult result = mvc.perform(get("/index/auth"))

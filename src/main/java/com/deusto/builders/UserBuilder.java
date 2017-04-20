@@ -66,7 +66,7 @@ public class UserBuilder {
         user.setPhone(person.getPhone());
         user.setCountryCode(person.getCountryCode());
         user.setBirthDate(person.getBirthDate());
-        user.setAddress(AddressBuilder.get(person.getAdress()));
+        user.setAddress(AddressBuilder.get(person.getAddress()));
         return user;
     }
 

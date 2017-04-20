@@ -68,8 +68,7 @@ public class RegistrController {
 
     @PostMapping(path = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> lastStep(@RequestBody @Valid PersonDTO person) {
-        //TODO ADD CONTROLLERADVICE
-            Registr registr = registrService.findByEmail(person.getEmail());
+        Registr registr = registrService.findByEmail(person.getEmail());
         if (!registr.isActiv()) return new ResponseEntity<>(ImmutableMap.of("message", "activate email"), BAD_REQUEST);
         LoginDTO loginDTO = UserBuilder.get(userService.insert(UserBuilder.get(registr, person)));
         registrService.delete(registr);

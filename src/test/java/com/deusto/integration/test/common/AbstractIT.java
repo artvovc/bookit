@@ -1,7 +1,6 @@
 package com.deusto.integration.test.common;
 
 import com.lordofthejars.nosqlunit.mongodb.MongoDbRule;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +24,8 @@ public abstract class AbstractIT {
     protected Environment env;
 
     @Rule
-    public MongoDbRule remoteMongoDbRule;
-
-    @Before
-    public void setup() {
-        remoteMongoDbRule = new MongoDbRule(
-                mongoDb().databaseName(env.getProperty("spring.data.mongodb.database")).build()
-        );
-    }
+    public MongoDbRule remoteMongoDbRule = new MongoDbRule(
+            mongoDb().databaseName("bookit_testdb").build()
+    );
 
 }

@@ -1,14 +1,22 @@
 package com.deusto.forms.email;
 
 import com.deusto.models.Registr;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 import static java.lang.String.format;
 
 public class RegistrForm implements EmailField {
-
+    @NotEmpty
     private String firstname;
+    @NotEmpty
     private String lastname;
+    @NotEmpty
+    @URL
     private String url;
+    @NotEmpty
+    @Email
     private String email;
 
     private RegistrForm(Registr registr, String appUrl) {
