@@ -8,10 +8,16 @@ import org.junit.Test;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/***
+ * more info HAMCREST -> http://www.vogella.com/tutorials/Hamcrest/article.html
+ *           JSONPATH -> https://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-write-clean-assertions-with-jsonpath/
+ */
 public class IndexControllerIT extends AbstractIT {
 
     @Test
@@ -25,6 +31,8 @@ public class IndexControllerIT extends AbstractIT {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andReturn();
 
+        assertNotNull(result.getResponse());
+        assertThat(5, is(5));
         System.out.println((result.getResponse()));
 
     }
@@ -35,6 +43,8 @@ public class IndexControllerIT extends AbstractIT {
         MvcResult result = mvc.perform(get("/index/auth"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.ageLimit", is(18)))
+                .andExpect(jsonPath("$.count", is(3)))
                 .andReturn();
 
         System.out.println((result.getResponse().getContentAsString()));

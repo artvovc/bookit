@@ -14,9 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -57,16 +59,20 @@ public abstract class AbstractUT {
 
     /***
      * =================================================
-     * Forms validator -> http://stackoverflow.com/questions/29069956/how-to-test-validation-annotations-of-a-class-using-junit/29070276#29070276
+     * Forms validator -> http://stackoverflow.com/a/41671471
      * =================================================
      */
 
     protected static Validator validator;
 
     @Before
-    public void setUp() {
+    public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+    }
+
+    public static <T> Set<ConstraintViolation<T>> validate(T obj) {
+        return validator.validate(obj);
     }
 
 }
