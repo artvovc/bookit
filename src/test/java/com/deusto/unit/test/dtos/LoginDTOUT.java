@@ -22,7 +22,7 @@ public class LoginDTOUT extends AbstractUT {
     public void inValidLoginDTO() {
         LoginDTO loginDTO = new LoginDTO();
 
-        loginDTO.setEmail("some.emailmail.com");
+        loginDTO.setEmail("");
         loginDTO.setEncryptedPassword("");
 
         assertFalse(validate(loginDTO).isEmpty());
