@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
-@RequestMapping(path = "/book")
+@RequestMapping("/book")
 public class BookController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class BookController {
     }
 
     /* trial pentru parametri de filtrare */
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     public HttpEntity<?> getAllBooksFilter(@RequestParam(value = "title") String title) {
         return new ResponseEntity(bookService.findByTitle(title), OK);
     }
