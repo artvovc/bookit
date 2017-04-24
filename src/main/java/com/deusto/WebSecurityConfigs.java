@@ -60,7 +60,7 @@ public class WebSecurityConfigs extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/registration/**", "/login/**", "/book/**").permitAll()
+                .antMatchers("/registration/**", "/login/**", "/book/**", "/reservation**", "/reservation/*").permitAll()
                 .antMatchers(GET, "/index/unauth").permitAll()
                 .anyRequest().authenticated();
 
@@ -82,7 +82,8 @@ public class WebSecurityConfigs extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**",
                         "/swagger-resources/configuration/ui",
-                        "/swagger-resources/configuration/security"
+                        "/swagger-resources/configuration/security",
+                        "/reservation**"
                 );
     }
 }
