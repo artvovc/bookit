@@ -2,6 +2,8 @@ package com.deusto.builders;
 
 import com.deusto.dtos.ReserveDTO;
 import com.deusto.models.Reserve;
+import com.deusto.services.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ReserveBuilder {
 
@@ -9,8 +11,7 @@ public class ReserveBuilder {
         Reserve reserve = new Reserve();
         reserve.setReserveDate(reserveDTO.getReserveDate());
         reserve.setReserveExpire(reserveDTO.getReserveExpire());
-        reserve.setUser(reserveDTO.getUser());
-        reserve.setBook(reserve.getBook());
+        reserve.setBook(reserveDTO.getBook());
         return reserve;
     }
 }

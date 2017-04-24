@@ -3,6 +3,7 @@ package com.deusto.controllers;
 import com.deusto.builders.ReserveBuilder;
 import com.deusto.dtos.ReserveDTO;
 import com.deusto.models.Reserve;
+import com.deusto.security.AuthenticationService;
 import com.deusto.services.BookService;
 import com.deusto.services.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class ReserveController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    AuthenticationService authenticationService;
+
     @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> create(@RequestBody Reserve reserve) {
         return new ResponseEntity<>(reserveService.insert(reserve), HttpStatus.OK);
@@ -38,6 +42,10 @@ public class ReserveController {
 
     @PostMapping(path = "/other", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> newReserve(@RequestBody ReserveDTO reserveDTO) {
-        return new ResponseEntity<>(reserveService.insert(ReserveBuilder.get(reserveDTO)), HttpStatus.OK);
+        if (authenticationService.getUserFromRequest() != null) {
+            return new ResponseEntity<>(reserveService.insert(ReserveBuilder.get(reserveDTO)), HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,13 +1,11 @@
 package com.deusto.dtos;
 
 import com.deusto.models.Book;
-import com.deusto.models.User;
 
 public class ReserveDTO {
 
     private long reserveDate;
     private long reserveExpire;
-    private User user;
     private Book book;
 
     public long getReserveDate() {
@@ -24,14 +22,6 @@ public class ReserveDTO {
 
     public void setReserveExpire(long reserveExpire) {
         this.reserveExpire = reserveExpire;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Book getBook() {
