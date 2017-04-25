@@ -14,6 +14,7 @@ public class Reserve {
 	private Book book;
 	private long reserveDate;
 	private long reserveExpire;
+
 	public String getId() {
 		return id;
 	}

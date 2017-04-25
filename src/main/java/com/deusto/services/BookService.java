@@ -25,7 +25,7 @@ public class BookService {
         return bRepository.findById(id);
     }
 
-    public List<Book> findByAuthorFirsName(String firstName) {
+    public List<Book> findAllByAuthorFirstName(String firstName) {
         return bRepository.findAllByAuthorLastName(firstName);
     }
 
@@ -35,6 +35,10 @@ public class BookService {
 
     public List<Book> findByTitle(String title) {
         return bRepository.findByTitle(title);
+    }
+
+    public List<Book> findByAuthorLastName(String lastName) {
+        return bRepository.findAllByAuthorLastName(lastName);
     }
 
     public void update(Book registr) {
