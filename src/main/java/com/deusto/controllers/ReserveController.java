@@ -2,8 +2,10 @@ package com.deusto.controllers;
 
 import com.deusto.builders.ReserveBuilder;
 import com.deusto.dtos.ReserveDTO;
+import com.deusto.models.Book;
 import com.deusto.models.Reserve;
 import com.deusto.security.AuthenticationService;
+import com.deusto.security.SecurityUser;
 import com.deusto.services.BookService;
 import com.deusto.services.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,25 +27,18 @@ public class ReserveController {
     ReserveService reserveService;
 
     @Autowired
-    BookService bookService;
-
-    @Autowired
     AuthenticationService authenticationService;
 
-    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> create(@RequestBody Reserve reserve) {
-        return new ResponseEntity<>(reserveService.insert(reserve), HttpStatus.OK);
-    }
-
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<?> json() {
-        return new ResponseEntity( HttpStatus.OK);
+    public HttpEntity<?> getAll() {
+        return new ResponseEntity(reserveService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/other", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> newReserve(@RequestBody ReserveDTO reserveDTO) {
-        if (authenticationService.getUserFromRequest() != null) {
-            return new ResponseEntity<>(reserveService.insert(ReserveBuilder.get(reserveDTO)), HttpStatus.OK);
+        SecurityUser user = authenticationService.getUserFromRequest();
+        if ( user != null) {
+            return new ResponseEntity<>(reserveService.insert(reserveDTO, user), HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
