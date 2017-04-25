@@ -1,7 +1,9 @@
 package com.deusto.unit.test.repositories;
 
 import com.deusto.unit.test.common.AbstractUT;
+import org.junit.Ignore;
 
-public class RegistrRepostoryUT extends AbstractUT {
+@Ignore
+public class UserRepositoryUTest extends AbstractUT {
 
 }

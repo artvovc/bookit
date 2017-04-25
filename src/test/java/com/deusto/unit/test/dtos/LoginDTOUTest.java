@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class LoginDTOUT extends AbstractUT {
+public class LoginDTOUTest extends AbstractUT {
     @Test
     public void validLoginDTO() {
         LoginDTO loginDTO = new LoginDTO();

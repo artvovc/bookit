@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class RegistrDTOUT extends AbstractUT {
+public class RegistrDTOUTest extends AbstractUT {
 
     @Test
     public void validRegistrDTO() {

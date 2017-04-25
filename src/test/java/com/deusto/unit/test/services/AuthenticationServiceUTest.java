@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 import static org.springframework.http.HttpStatus.OK;
 
-public class AuthenticationServiceUT extends AbstractUT {
+public class AuthenticationServiceUTest extends AbstractUT {
 
     @Autowired
     private TokenUtils tokenUtils;

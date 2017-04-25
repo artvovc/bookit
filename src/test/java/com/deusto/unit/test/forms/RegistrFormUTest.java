@@ -1,6 +1,8 @@
 package com.deusto.unit.test.forms;
 
 import com.deusto.unit.test.common.AbstractUT;
+import org.junit.Ignore;
 
-public class RegistrFormUT extends AbstractUT {
+@Ignore
+public class RegistrFormUTest extends AbstractUT {
 }

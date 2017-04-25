@@ -26,5 +26,10 @@
       "count": 3,
       "_class": "com.deusto.models.Book"
     }
+  ],
+  "addresses": [
+  ],
+  "bookit_users": [
+
   ]
 }

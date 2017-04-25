@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * more info HAMCREST -> http://www.vogella.com/tutorials/Hamcrest/article.html
  *           JSONPATH -> https://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-write-clean-assertions-with-jsonpath/
  */
-public class IndexControllerIT extends AbstractIT {
+public class IndexControllerITest extends AbstractIT {
 
     @Test
     @UsingDataSet(locations = "/json/controllers/index/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)

@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class RegistrBuilderUT extends AbstractUT {
+public class RegistrBuilderUTest extends AbstractUT {
 
     @Test
     public void validRegistrBuilder() {

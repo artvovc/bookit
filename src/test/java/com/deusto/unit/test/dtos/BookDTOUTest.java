@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertTrue;
 
-public class BookDTOUT extends AbstractUT {
+public class BookDTOUTest extends AbstractUT {
     @Test
     public void validBookDTO() {
         BookDTO bookDTO = new BookDTO();

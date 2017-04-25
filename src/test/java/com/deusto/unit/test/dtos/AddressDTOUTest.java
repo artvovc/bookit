@@ -1,6 +1,8 @@
 package com.deusto.unit.test.dtos;
 
 import com.deusto.unit.test.common.AbstractUT;
+import org.junit.Ignore;
 
-public class PersonDTOUT extends AbstractUT {
+@Ignore
+public class AddressDTOUTest extends AbstractUT {
 }

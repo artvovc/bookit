@@ -1,7 +1,9 @@
 package com.deusto.unit.test.builders;
 
 import com.deusto.unit.test.common.AbstractUT;
+import org.junit.Ignore;
 
-public class UserBuilderUT extends AbstractUT {
+@Ignore
+public class AddressBuilderUTest extends AbstractUT {
 
 }

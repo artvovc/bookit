@@ -1,6 +1,8 @@
 package com.deusto.integration.test;
 
 import com.deusto.integration.test.common.AbstractIT;
+import org.junit.Ignore;
 
-public class LoginControllerIT extends AbstractIT {
+@Ignore
+public class UserControllerITest extends AbstractIT {
 }
