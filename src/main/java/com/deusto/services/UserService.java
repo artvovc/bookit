@@ -22,7 +22,7 @@ public class UserService {
     }
 
     public User findById(String id) {
-        return userRepository.findById(id);
+        return userRepository.findUserById(id);
     }
 
     public List<User> findbyFirstName(String firstName) {

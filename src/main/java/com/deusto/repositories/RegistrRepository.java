@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RegistrRepository extends MongoRepository<Registr, String> {
-    Registr findById(String id);
 
+    Registr findRegistrById(String id);
     Registr findByEmail(String email);
 }

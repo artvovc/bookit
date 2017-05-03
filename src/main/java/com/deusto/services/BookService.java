@@ -22,7 +22,7 @@ public class BookService {
     }
 
     public Book findById(String id) {
-        return bRepository.findById(id);
+        return bRepository.findBookById(id);
     }
 
     public List<Book> findAllByAuthorFirstName(String firstName) {

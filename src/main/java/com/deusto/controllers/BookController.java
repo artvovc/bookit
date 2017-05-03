@@ -2,6 +2,7 @@ package com.deusto.controllers;
 
 import com.deusto.builders.BookBuilder;
 import com.deusto.dtos.BookDTO;
+import com.deusto.dtos.FilterDTO;
 import com.deusto.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
 @Controller
@@ -37,9 +39,20 @@ public class BookController {
         return new ResponseEntity(bookService.findById(id), OK);
     }
 
-    /* trial pentru parametri de filtrare */
-    @GetMapping
-    public HttpEntity<?> getAllBooksFilter(@RequestParam(value = "title") String title) {
-        return new ResponseEntity(bookService.findByTitle(title), OK);
+//    /* trial pentru parametri de filtrare */
+//    @GetMapping
+//    public HttpEntity<?> getAllBooksFilter(@RequestParam(value = "title") String title) {
+//        return new ResponseEntity(bookService.findByTitle(title), OK);
+//    }
+
+    @PostMapping(path = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> getAllBooksFilter1(@RequestBody FilterDTO filterDTO) {
+        ResponseEntity responseEntity;
+        if(filterDTO.getTitle() != null) {
+            return new ResponseEntity(bookService.findByTitle(filterDTO.getTitle()), OK);
+        } else if (filterDTO.getGenre() != null) {
+            return new ResponseEntity<Object>(bookService.findByGenre(filterDTO.getGenre()), OK);
+        }
+        return new ResponseEntity<Object>(BAD_REQUEST);
     }
 }

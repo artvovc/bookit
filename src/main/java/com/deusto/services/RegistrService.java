@@ -16,7 +16,7 @@ public class RegistrService {
     }
 
     public Registr findById(String id) {
-        return registrRepository.findById(id);
+        return registrRepository.findRegistrById(id);
     }
 
     public void update(Registr registr) {
