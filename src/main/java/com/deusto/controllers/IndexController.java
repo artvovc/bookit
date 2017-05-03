@@ -1,6 +1,7 @@
 package com.deusto.controllers;
 
 import com.deusto.models.Book;
+import com.deusto.security.AuthenticationService;
 import com.deusto.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -22,6 +23,9 @@ public class IndexController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> post(@RequestBody @Valid Book book) {
         return new ResponseEntity<>(bookService.insert(book), HttpStatus.OK);
@@ -35,6 +39,11 @@ public class IndexController {
         book.setAgeLimit(18);
         book.setCount(3);
         return new ResponseEntity(bookService.insert(book), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/authUser", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> authUser() {
+        return new ResponseEntity(authenticationService.getUserFromRequest(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/unauth", produces = MediaType.APPLICATION_JSON_VALUE)
