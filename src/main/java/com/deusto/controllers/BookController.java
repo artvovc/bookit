@@ -3,6 +3,7 @@ package com.deusto.controllers;
 import com.deusto.builders.BookBuilder;
 import com.deusto.dtos.BookDTO;
 import com.deusto.dtos.FilterDTO;
+import com.deusto.models.Book;
 import com.deusto.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
@@ -47,12 +51,14 @@ public class BookController {
 
     @PostMapping(path = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> getAllBooksFilter1(@RequestBody FilterDTO filterDTO) {
-        ResponseEntity responseEntity;
+        List<Book> bookList = new ArrayList<>();
         if(filterDTO.getTitle() != null) {
-            return new ResponseEntity(bookService.findByTitle(filterDTO.getTitle()), OK);
-        } else if (filterDTO.getGenre() != null) {
-            return new ResponseEntity<Object>(bookService.findByGenre(filterDTO.getGenre()), OK);
+            bookList.addAll(bookService.findByTitle(filterDTO.getTitle()));
         }
-        return new ResponseEntity<Object>(BAD_REQUEST);
+        if (filterDTO.getGenre() != null) {
+            bookList.addAll(bookService.findByTitle(filterDTO.getTitle()));
+        }
+        /* TODO - remove this  bullshit - coz books might repeat */
+        return new ResponseEntity<>(bookList, OK);
     }
 }

@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,24 +26,24 @@ public class BookControllerITest extends AbstractIT {
 
     Logger logger = Logger.getLogger(ReserveControllerITest.class.getName());
 
-//    @Test
-//    @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
-//    @WithUserDetails(value = "usermail@mail.com")
-//    public void getAllBooksFilter() throws Exception {
-////        String title = "Test-book-1";
-//        FilterDTO filterDTO = new FilterDTO();
-//        filterDTO.setTitle("Test-book-1");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String json = objectMapper.writeValueAsString(filterDTO);
-//
-//        MvcResult result = mvc.perform(get("/book/filter")
-//                .contentType(APPLICATION_JSON)
-//                .content(json))
-//                .andExpect(status().isOk())
-//                .andReturn();
-//
-//        logger.log(Level.WARNING, result.getResponse().getContentAsString());
-//    }
+    @Test
+    @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
+    @WithUserDetails(value = "usermail@mail.com")
+    public void getAllBooksFilter() throws Exception {
+//        String title = "Test-book-1";
+        FilterDTO filterDTO = new FilterDTO();
+        filterDTO.setTitle("Test-book-1");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(filterDTO);
+
+        MvcResult result = mvc.perform(post("/book/filter")
+                .contentType(APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        logger.log(Level.WARNING, result.getResponse().getContentAsString());
+    }
 
     @Test
     @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
