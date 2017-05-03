@@ -22,10 +22,10 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-//    @GetMapping(path = "/book", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public HttpEntity<?> getAllBooks() {
-//        return new ResponseEntity(bookService.findAll(), OK);
-//    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<?> getAllBooks() {
+        return new ResponseEntity(bookService.findAll(), OK);
+    }
 
     /* pentru mine ca sa pot introduce carti */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

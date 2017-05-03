@@ -1,5 +1,6 @@
 package com.deusto.integration.test;
 
+import com.deusto.dtos.FilterDTO;
 import com.deusto.integration.test.common.AbstractIT;
 import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import com.lordofthejars.nosqlunit.core.LoadStrategyEnum;
@@ -24,30 +25,32 @@ public class BookControllerITest extends AbstractIT {
 
     Logger logger = Logger.getLogger(ReserveControllerITest.class.getName());
 
-    @Test
-    @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
-    @WithUserDetails(value = "usermail@mail.com")
-    public void getAllBooksFilter() throws Exception {
-        String title = "Luceafarul";
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(title);
-
-        MvcResult result = mvc.perform(get("/book/filter")
-                .contentType(APPLICATION_JSON)
-                .content(json))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        logger.log(Level.WARNING, result.getResponse().getContentAsString());
-    }
-
 //    @Test
 //    @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
 //    @WithUserDetails(value = "usermail@mail.com")
-//    public void findAll() throws Exception {
-//        MvcResult result = mvc.perform(get("/book"))
+//    public void getAllBooksFilter() throws Exception {
+////        String title = "Test-book-1";
+//        FilterDTO filterDTO = new FilterDTO();
+//        filterDTO.setTitle("Test-book-1");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String json = objectMapper.writeValueAsString(filterDTO);
+//
+//        MvcResult result = mvc.perform(get("/book/filter")
+//                .contentType(APPLICATION_JSON)
+//                .content(json))
 //                .andExpect(status().isOk())
 //                .andReturn();
+//
+//        logger.log(Level.WARNING, result.getResponse().getContentAsString());
 //    }
+
+    @Test
+    @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
+    @WithUserDetails(value = "usermail@mail.com")
+    public void findAll() throws Exception {
+        MvcResult result = mvc.perform(get("/book"))
+                .andExpect(status().isOk())
+                .andReturn();
+        logger.log(Level.WARNING, result.getResponse().getContentAsString());
+    }
 }
