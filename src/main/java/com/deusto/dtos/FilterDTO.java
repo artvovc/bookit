@@ -5,8 +5,27 @@ package com.deusto.dtos;
  */
 public class FilterDTO {
 
-    String title;
-    String genre;
+    private String title;
+    protected String genre;
+    // implement for author
+    private long reserveDate;
+    private long reserveExpire;
+
+    public long getReserveDate() {
+        return reserveDate;
+    }
+
+    public void setReserveDate(long reserveDate) {
+        this.reserveDate = reserveDate;
+    }
+
+    public long getReserveExpire() {
+        return reserveExpire;
+    }
+
+    public void setReserveExpire(long reserveExpire) {
+        this.reserveExpire = reserveExpire;
+    }
 
     public String getTitle() {
         return title;

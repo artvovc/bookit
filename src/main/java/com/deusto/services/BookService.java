@@ -44,6 +44,4 @@ public class BookService {
     public void update(Book registr) {
         bRepository.save(registr);
     }
-
-
 }

@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
@@ -51,14 +53,17 @@ public class BookController {
 
     @PostMapping(path = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> getAllBooksFilter1(@RequestBody FilterDTO filterDTO) {
-        List<Book> bookList = new ArrayList<>();
+        Set set = new HashSet();
+        Long nullValue = null;
+        List<Book> bookList = new ArrayList<>(); // set rather than list
         if(filterDTO.getTitle() != null) {
-            bookList.addAll(bookService.findByTitle(filterDTO.getTitle()));
+            set.addAll(bookService.findByTitle(filterDTO.getTitle()));
         }
+
         if (filterDTO.getGenre() != null) {
-            bookList.addAll(bookService.findByTitle(filterDTO.getTitle()));
+            set.addAll(bookService.findByGenre(filterDTO.getTitle()));
         }
-        /* TODO - remove this  bullshit - coz books might repeat */
+        bookList.addAll(set);
         return new ResponseEntity<>(bookList, OK);
     }
 }

@@ -15,7 +15,7 @@ public interface ReserveRepository extends MongoRepository<Reserve, String> {
     List<Reserve> findAllByBook(Book book);
     List<Reserve> findAllByUser(User user);
     List<Reserve> findAllByReserveDateBeforeAndReserveExpireAfter(Long before, Long after);
-    List<Reserve> findAll();
+    List<Reserve> findDistinctByReserveDateAndReserveExpire(Long before, Long after);
 
     void delete(Reserve reserve);
 }

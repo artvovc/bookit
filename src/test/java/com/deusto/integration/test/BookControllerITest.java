@@ -30,9 +30,11 @@ public class BookControllerITest extends AbstractIT {
     @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
     @WithUserDetails(value = "usermail@mail.com")
     public void getAllBooksFilter() throws Exception {
-//        String title = "Test-book-1";
         FilterDTO filterDTO = new FilterDTO();
+
         filterDTO.setTitle("Test-book-1");
+        filterDTO.setGenre("genre2");
+
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(filterDTO);
 
