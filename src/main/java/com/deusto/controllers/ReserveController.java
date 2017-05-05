@@ -4,6 +4,7 @@ import com.deusto.builders.ReserveBuilder;
 import com.deusto.dtos.ReserveDTO;
 import com.deusto.models.Book;
 import com.deusto.models.Reserve;
+import com.deusto.repositories.BookRepository;
 import com.deusto.security.AuthenticationService;
 import com.deusto.security.SecurityUser;
 import com.deusto.services.BookService;
@@ -27,6 +28,9 @@ public class ReserveController {
     ReserveService reserveService;
 
     @Autowired
+    BookRepository bookRepository;
+
+    @Autowired
     AuthenticationService authenticationService;
 
     @GetMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,11 +40,15 @@ public class ReserveController {
 
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> newReserve(@RequestBody ReserveDTO reserveDTO) {
+
         SecurityUser user = authenticationService.getUserFromRequest();
+        if (bookRepository.findAllById(reserveDTO.getBookId()).getCount() <= 0 ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         if ( user != null) {
             return new ResponseEntity<>(reserveService.insert(reserveDTO, user), HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }

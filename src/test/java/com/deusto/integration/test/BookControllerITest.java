@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class BookControllerITest extends AbstractIT {
 
-    Logger logger = Logger.getLogger(ReserveControllerITest.class.getName());
+    Logger logger = Logger.getLogger(BookControllerITest.class.getName());
 
     @Test
     @UsingDataSet(locations = "/json/controllers/book/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)

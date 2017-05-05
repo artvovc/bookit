@@ -107,4 +107,9 @@ public class Book {
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+
+    public Book decrementCount() {
+        this.count--;
+        return this;
+    }
 }

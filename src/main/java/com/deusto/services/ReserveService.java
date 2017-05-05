@@ -27,7 +27,7 @@ public class ReserveService {
 
     public Reserve insert(ReserveDTO reserveDTO, SecurityUser securityUser) {
         Reserve reserve = new Reserve();
-        reserve.setBook(bookRepository.findBookById(reserveDTO.getBookId()));
+        reserve.setBook(bookRepository.findBookById(reserveDTO.getBookId()).decrementCount());
         reserve.setUser(userRepository.findByEmail(securityUser.getEmail()));
         return reserveRepository.insert(reserve);
     }

@@ -32,7 +32,7 @@ public class ReserveControllerITest extends AbstractIT {
     @WithUserDetails(value = "usermail@mail.com")
     public void newReserve() throws Exception {
         ReserveDTO reserveDTO = new ReserveDTO();
-        reserveDTO.setBookId("58f0aa5e5304b83377b1ac8f");
+        reserveDTO.setBookId("51b6eab8cd794eb62bb3e131");
 
         /* TODO de modificat cantitatea cartilor - minus 1 */
 
@@ -45,10 +45,51 @@ public class ReserveControllerITest extends AbstractIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.user.id", is("51b6eab8cd794eb62bb3e131")))
                 .andExpect(jsonPath("$.user.email", is("usermail@mail.com")))
+                .andExpect(jsonPath("$.book.count", is(4)))
                 .andReturn();
 
         logger.log(Level.INFO, result.getResponse().getContentAsString());
     }
+
+    @Test
+    @UsingDataSet(locations = "/json/controllers/reserve/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
+    @WithUserDetails(value = "usermail@mail.com")
+    public void reserveWithZeroBooks() throws Exception {
+        ReserveDTO reserveDTO = new ReserveDTO();
+        reserveDTO.setBookId("51b6eab8cd794eb62bb3e132");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(reserveDTO);
+
+        MvcResult result = mvc.perform(post("/reservation/create")
+                .contentType(APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        logger.log(Level.INFO, result.getResponse().getContentAsString());
+    }
+
+    /* ----------- Manage the test unauthorized -----------------*/
+
+    /*
+    @Test
+    @UsingDataSet(locations = "/json/controllers/reserve/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
+    public void reserveUnauthorized() throws Exception {
+
+        ReserveDTO reserveDTO = new ReserveDTO();
+        reserveDTO.setBookId("51b6eab8cd794eb62bb3e132");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(reserveDTO);
+
+        MvcResult mvcResult = mvc.perform(post("/reservation/create")
+                .contentType(APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isUnauthorized())
+                .andReturn();
+    }
+    */
 
     @Test
     public void getAll() throws Exception {
