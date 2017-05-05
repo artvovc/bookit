@@ -58,23 +58,6 @@ public class BookBuilder {
 		this.book.setTags(tags);
 		return this;
 	}
-	
-	/* poti si sa faci constructor in builder care va primi toti parametri ... Da, pot */
-	// CONSTRUCTOR a lui Builderrrrrrrrrrrrrrrrrrrrrrrrrrrrrr da nu metoda Book(...) care intoarce Book
-	public BookBuilder(String id, String title, String authorFirstName, String authorLastName, String genre,
-			String description, Long publishDate, int pages, int ageLimit, int count, List<String> tags) {
-		this.book.setId(id);
-		this.book.setAgeLimit(ageLimit);
-		this.book.setTitle(title);
-		this.book.setAuthorFirstName(authorFirstName);
-		this.book.setAuthorLastName(authorLastName);
-		this.book.setGenre(genre);
-		this.book.setDescription(description);
-		this.book.setPublishDate(publishDate);
-		this.book.setPages(pages);
-		this.book.setCount(count);
-		this.book.setTags(tags);
-	}	
 
 	public Book build() {
 		return this.book;

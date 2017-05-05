@@ -48,14 +48,6 @@ public class UserBuilder {
         return this.user;
     }
 
-    public static User get(Registr registr) {
-        User user = new User();
-        user.setFirstname(registr.getFirstname());
-        user.setLastname(registr.getLastname());
-        user.setEmail(registr.getEmail());
-        return user;
-    }
-
     public static User get(Registr registr, PersonDTO person) {
         User user = new User();
         user.setFirstname(registr.getFirstname());
