@@ -8,22 +8,22 @@ public class FilterDTO {
     private String title;
     protected String genre;
     // implement for author
-    private long reserveDate;
-    private long reserveExpire;
+    private Long reserveDate;
+    private Long reserveExpire;
 
-    public long getReserveDate() {
+    public Long getReserveDate() {
         return reserveDate;
     }
 
-    public void setReserveDate(long reserveDate) {
+    public void setReserveDate(Long reserveDate) {
         this.reserveDate = reserveDate;
     }
 
-    public long getReserveExpire() {
+    public Long getReserveExpire() {
         return reserveExpire;
     }
 
-    public void setReserveExpire(long reserveExpire) {
+    public void setReserveExpire(Long reserveExpire) {
         this.reserveExpire = reserveExpire;
     }
 

@@ -10,9 +10,9 @@ public class BookDTO {
     private String genre;
     private String description;
     private Long publishDate;
-    private int pages;
-    private int ageLimit;
-    private int count;
+    private Integer pages;
+    private Integer ageLimit;
+    private Integer count;
     private List<String> tags;
 
     public String getTitle() {
@@ -63,27 +63,27 @@ public class BookDTO {
         this.publishDate = publishDate;
     }
 
-    public int getPages() {
+    public Integer getPages() {
         return pages;
     }
 
-    public void setPages(int pages) {
+    public void setPages(Integer pages) {
         this.pages = pages;
     }
 
-    public int getAgeLimit() {
+    public Integer getAgeLimit() {
         return ageLimit;
     }
 
-    public void setAgeLimit(int ageLimit) {
+    public void setAgeLimit(Integer ageLimit) {
         this.ageLimit = ageLimit;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 

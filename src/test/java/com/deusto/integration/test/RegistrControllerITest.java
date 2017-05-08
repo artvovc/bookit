@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class RegistrControllerITest extends AbstractIT {
     @Test
-    public void ValidPostRegistr() throws Exception {
+    public void validPostRegistr() throws Exception {
 
         RegistrDTO registrDTO = new RegistrDTO();
 

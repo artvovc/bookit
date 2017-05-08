@@ -25,15 +25,12 @@ public class IndexControllerITest extends AbstractIT {
     @UsingDataSet(locations = "/json/controllers/index/actual.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
     @ShouldMatchDataSet(location = "/json/controllers/index/expect.json")
     public void unauth() throws Exception {
-        System.out.println(env.getProperty("spring.data.mongodb.database"));
-
         MvcResult result = mvc.perform(get("/index/unauth"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andReturn();
 
         assertNotNull(result.getResponse());
-
     }
 
     @Test
@@ -49,7 +46,6 @@ public class IndexControllerITest extends AbstractIT {
                 .andReturn();
 
         System.out.println((result.getResponse().getContentAsString()));
-
     }
 
     @Test

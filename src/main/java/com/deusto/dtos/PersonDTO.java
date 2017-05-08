@@ -7,10 +7,10 @@ public class PersonDTO {
     @Email
     @NotEmpty
     private String email;
-    private long birthDate;
+    private Long birthDate;
     @NotEmpty
     private String countryCode;
-    private int phone;
+    private Integer phone;
     @NotEmpty
     private String password;
     private AddressDTO address;
@@ -23,11 +23,11 @@ public class PersonDTO {
         this.email = email;
     }
 
-    public long getBirthDate() {
+    public Long getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(long birthDate) {
+    public void setBirthDate(Long birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -39,11 +39,11 @@ public class PersonDTO {
         this.countryCode = countryCode;
     }
 
-    public int getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 

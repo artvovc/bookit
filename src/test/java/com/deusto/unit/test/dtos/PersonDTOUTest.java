@@ -6,9 +6,7 @@ import com.deusto.unit.test.common.AbstractUT;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PersonDTOUTest extends AbstractUT {
 
@@ -16,7 +14,7 @@ public class PersonDTOUTest extends AbstractUT {
     public void validPersonDTO() {
         PersonDTO personDTO = new PersonDTO();
 
-        personDTO.setBirthDate(0);
+        personDTO.setBirthDate(0L);
 
         AddressDTO addressDTO = new AddressDTO();
         addressDTO.setCountry("Moldova");

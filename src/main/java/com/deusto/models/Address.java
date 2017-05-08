@@ -8,9 +8,9 @@ public class Address {
 	@Id
 	private String id;
 	private String street;
-	private int houseNumber;
-	private int apartamentNumber;
-	private String postalCode;
+    private Integer houseNumber;
+    private Integer apartamentNumber;
+    private String postalCode;
 	private String city;
 	private String country;
 	public String getId() {
@@ -25,17 +25,21 @@ public class Address {
 	public void setStreet(String street) {
 		this.street = street;
 	}
-	public int getHouseNumber() {
-		return houseNumber;
+
+    public Integer getHouseNumber() {
+        return houseNumber;
 	}
-	public void setHouseNumber(int houseNumber) {
-		this.houseNumber = houseNumber;
+
+    public void setHouseNumber(Integer houseNumber) {
+        this.houseNumber = houseNumber;
 	}
-	public int getApartamentNumber() {
-		return apartamentNumber;
+
+    public Integer getApartamentNumber() {
+        return apartamentNumber;
 	}
-	public void setApartamentNumber(int apartamentNumber) {
-		this.apartamentNumber = apartamentNumber;
+
+    public void setApartamentNumber(Integer apartamentNumber) {
+        this.apartamentNumber = apartamentNumber;
 	}
 	public String getPostalCode() {
 		return postalCode;

@@ -1,40 +1,51 @@
 package com.deusto.builders;
 
-import com.deusto.models.Address;
 import com.deusto.dtos.AddressDTO;
+import com.deusto.models.Address;
 
 public class AddressBuilder {
 
-    private Address address;
+    private Address address = new Address();
 
-    private AddressBuilder country(String country) {
+    private AddressBuilder() {
+    }
+
+    public AddressBuilder country(String country) {
         this.address.setCountry(country);
         return this;
     }
 
-    private AddressBuilder city(String city) {
+    public AddressBuilder city(String city) {
         this.address.setCity(city);
         return this;
     }
 
-    private AddressBuilder street(String street) {
+    public AddressBuilder street(String street) {
         this.address.setStreet(street);
         return this;
     }
 
-    private AddressBuilder postalCode(String postalCode) {
+    public AddressBuilder postalCode(String postalCode) {
         this.address.setPostalCode(postalCode);
         return this;
     }
 
-    private AddressBuilder houseNumber(int houseNumeber) {
+    public AddressBuilder houseNumber(Integer houseNumeber) {
         this.address.setHouseNumber(houseNumeber);
         return this;
     }
 
-    private AddressBuilder apartamentNumber(int apartmentNumber) {
+    public AddressBuilder apartamentNumber(Integer apartmentNumber) {
         this.address.setApartamentNumber(apartmentNumber);
         return this;
+    }
+
+    public static AddressBuilder builder() {
+        return new AddressBuilder();
+    }
+
+    public Address build() {
+        return this.address;
     }
 
     public static Address get(AddressDTO addressDTO) {

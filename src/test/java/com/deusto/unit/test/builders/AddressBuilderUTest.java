@@ -7,8 +7,7 @@ import com.deusto.unit.test.common.AbstractUT;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AddressBuilderUTest extends AbstractUT {
 
@@ -28,5 +27,37 @@ public class AddressBuilderUTest extends AbstractUT {
         assertThat(address.getCity(), is("Chisinau"));;
         assertThat(address.getCountry(), is("Moldova"));
         assertThat(address.getStreet(), is("Stefan The Great"));
+    }
+
+    @Test
+    public void validAdderessBuilderMethodStyle() {
+        Address address = AddressBuilder
+                .builder()
+                .apartamentNumber(1)
+                .city("Chisinau")
+                .country("Moldova")
+                .houseNumber(23)
+                .postalCode("MD-2421")
+                .street("armeneasca")
+                .build();
+
+        assertThat(address.getApartamentNumber(), is(1));
+        assertThat(address.getCity(), is("Chisinau"));
+        assertThat(address.getCountry(), is("Moldova"));
+        assertThat(address.getHouseNumber(), is(23));
+        assertThat(address.getPostalCode(), is("MD-2421"));
+        assertThat(address.getStreet(), is("armeneasca"));
+
+        address = AddressBuilder
+                .builder()
+                .apartamentNumber(2)
+                .build();
+
+        assertThat(address.getApartamentNumber(), is(2));
+        assertNull(address.getCity());
+        assertNull(address.getCountry());
+        assertNull(address.getHouseNumber());
+        assertNull(address.getPostalCode());
+        assertNull(address.getStreet());
     }
 }

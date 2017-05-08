@@ -12,8 +12,8 @@ public class Reserve {
 	private User user;
 	@DBRef 
 	private Book book;
-	private long reserveDate;
-	private long reserveExpire;
+    private Long reserveDate;
+    private Long reserveExpire;
 
 	public String getId() {
 		return id;
@@ -33,17 +33,21 @@ public class Reserve {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	public long getReserveDate() {
-		return reserveDate;
+
+    public Long getReserveDate() {
+        return reserveDate;
 	}
-	public void setReserveDate(long reserveDate) {
-		this.reserveDate = reserveDate;
+
+    public void setReserveDate(Long reserveDate) {
+        this.reserveDate = reserveDate;
 	}
-	public long getReserveExpire() {
-		return reserveExpire;
+
+    public Long getReserveExpire() {
+        return reserveExpire;
 	}
-	public void setReserveExpire(long reserveExpire) {
-		this.reserveExpire = reserveExpire;
+
+    public void setReserveExpire(Long reserveExpire) {
+        this.reserveExpire = reserveExpire;
 	}
 	
 

@@ -7,7 +7,10 @@ import com.deusto.models.User;
 
 public class UserBuilder {
 
-    private User user;
+    private User user = new User();
+
+    private UserBuilder() {
+    }
 
     public UserBuilder firstname(String firstName) {
         this.user.setFirstname(firstName);
@@ -24,7 +27,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder birthDate(long birthdate) {
+    public UserBuilder birthDate(Long birthdate) {
         this.user.setBirthDate(birthdate);
         return this;
     }
@@ -34,7 +37,7 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder phone(int phone) {
+    public UserBuilder phone(Integer phone) {
         this.user.setPhone(phone);
         return this;
     }
@@ -42,6 +45,10 @@ public class UserBuilder {
     public UserBuilder password(String password) {
         this.user.setPassword(password);
         return this;
+    }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
     }
 
     public User build() {

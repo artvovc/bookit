@@ -6,22 +6,22 @@ public class AddressDTO {
     private String city;
     private String street;
     private String postalCode;
-    private int houseNumber;
-    private int apartamentNumber;
+    private Integer houseNumber;
+    private Integer apartamentNumber;
 
-    public int getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public int getApartamentNumber() {
+    public Integer getApartamentNumber() {
         return apartamentNumber;
     }
 
-    public void setApartamentNumber(int apartamentNumber) {
+    public void setApartamentNumber(Integer apartamentNumber) {
         this.apartamentNumber = apartamentNumber;
     }
 

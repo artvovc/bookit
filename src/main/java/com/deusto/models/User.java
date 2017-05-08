@@ -11,10 +11,10 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private long birthDate;
-	private String countryCode;
-	private int phone;
-	private String password;
+    private Long birthDate;
+    private String countryCode;
+    private Integer phone;
+    private String password;
 
     @DBRef(lazy = true)
     private Address address;
@@ -43,11 +43,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getBirthDate() {
-		return birthDate;
+
+    public Long getBirthDate() {
+        return birthDate;
 	}
-	public void setBirthDate(long birthDate) {
-		this.birthDate = birthDate;
+
+    public void setBirthDate(Long birthDate) {
+        this.birthDate = birthDate;
 	}
 	public String getCountryCode() {
 		return countryCode;
@@ -55,11 +57,13 @@ public class User {
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
 	}
-	public int getPhone() {
-		return phone;
+
+    public Integer getPhone() {
+        return phone;
 	}
-	public void setPhone(int phone) {
-		this.phone = phone;
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
 	}
 	public Address getAddress() {
 		return address;
