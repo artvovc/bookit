@@ -38,11 +38,12 @@ public class ReserveController {
         return new ResponseEntity(reserveService.findAll(), HttpStatus.OK);
     }
 
+    /* trebuie de verificat count-ul */
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> newReserve(@RequestBody ReserveDTO reserveDTO) {
 
         SecurityUser user = authenticationService.getUserFromRequest();
-        if (bookRepository.findAllById(reserveDTO.getBookId()).getCount() <= 0 ) {
+        if (bookRepository.findBookById(reserveDTO.getBookId()).getCount() <= 0 ) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         if ( user != null) {

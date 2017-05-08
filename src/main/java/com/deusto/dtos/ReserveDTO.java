@@ -1,7 +1,5 @@
 package com.deusto.dtos;
 
-import com.deusto.models.Book;
-
 public class ReserveDTO {
 
     private String bookId;
