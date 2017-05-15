@@ -6,7 +6,6 @@ import com.deusto.dtos.LoginDTO;
 import com.deusto.dtos.PersonDTO;
 import com.deusto.dtos.RegistrDTO;
 import com.deusto.forms.email.RegistrForm;
-import com.deusto.models.Registr;
 import com.deusto.security.AuthenticationService;
 import com.deusto.services.RegistrService;
 import com.deusto.services.UserService;
@@ -47,32 +46,31 @@ public class RegistrController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> firstStep(@RequestBody @Valid RegistrDTO registrDTO) {
-        //TODO avoid try catch block in controllers
-        try {
-            emailService.send(
-                    env.getProperty("mail.template"),
-                    RegistrForm.get(registrService.insert(RegistrBuilder.get(registrDTO)), format("%s%s", env.getProperty("app.url"), env.getProperty("registration.path"))));
-        } catch (Exception e) {
-            return new ResponseEntity<>(ImmutableMap.of("error", e.getMessage()), BAD_REQUEST);
-        }
+        if (!registrService.exists(registrDTO.getEmail()))
+            try {
+                emailService.send(env.getProperty("mail.template"), RegistrForm.get(registrService.insert(RegistrBuilder.get(registrDTO)), format("%s%s", env.getProperty("app.url"), env.getProperty("registration.path"))));
+            } catch (Exception e) {
+                return new ResponseEntity<>(ImmutableMap.of("error", e.getMessage()), BAD_REQUEST);
+            }
         return new ResponseEntity<>(ImmutableMap.of("message", env.getProperty("mail.message")), OK);
     }
 
     @GetMapping(path = "/activate/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> secondStep(@PathVariable String id) {
-        Registr registr = registrService.findById(id);
-        registr.setActiv(true);
-        registrService.update(registr);
-        return new ResponseEntity<>(ImmutableMap.of("message", "successful activated"), OK);
+        return new ResponseEntity<>(registrService.updateReg(id), OK);
     }
 
     @PostMapping(path = "/person", produces = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<?> lastStep(@RequestBody @Valid PersonDTO person) {
-        Registr registr = registrService.findByEmail(person.getEmail());
-        if (!registr.isActiv()) return new ResponseEntity<>(ImmutableMap.of("message", "activate email"), BAD_REQUEST);
-        LoginDTO loginDTO = UserBuilder.get(userService.insert(UserBuilder.get(registr, person)));
-        registrService.delete(registr);
-        return authenticationService.authentication(loginDTO);
+        return registrService.findByEmail(person.getEmail()).map(
+                registr -> {
+                    registrService.delete(registr);
+                    LoginDTO loginDTO = UserBuilder.get(userService.insert(UserBuilder.get(registr, person)));
+                    return authenticationService.authentication(loginDTO);
+                }
+        ).orElse(
+                new ResponseEntity<>(ImmutableMap.of("message", "activate email"), BAD_REQUEST)
+        );
     }
 
 }
